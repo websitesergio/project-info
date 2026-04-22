@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Proiect Info - Dashboard Pro</title>
+    <style>
+        body { font-family: sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; padding: 50px; }
+        .card { background: #1e293b; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); text-align: center; width: 300px; }
+        h1 { color: #38bdf8; }
+        #clock { font-size: 3rem; font-weight: bold; margin: 20px 0; color: #fbbf24; }
+        input { padding: 10px; border-radius: 5px; border: none; width: 80%; }
+        button { padding: 10px 20px; background: #38bdf8; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; font-weight: bold; }
+        button:hover { background: #0ea5e9; }
+        ul { list-style: none; padding: 0; text-align: left; width: 100%; }
+        li { background: #334155; padding: 8px; margin-top: 5px; border-radius: 4px; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+    <h1>Project: Productivity OS</h1>
+    
+    <div class="card">
+        <div id="clock">00:00:00</div>
+        <p>Stay Disciplined.</p>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+        <h3>Quick Tasks</h3>
+        <input type="text" id="taskInput" placeholder="New task...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        // Funcția pentru Ceas (Logic)
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Funcția pentru To-Do List (Interactivitate)
+        function addTask() {
+            let input = document.getElementById('taskInput');
+            if (input.value === '') return;
+            let li = document.createElement('li');
+            li.innerHTML = `${input.value} <span style="cursor:pointer;color:#f87171" onclick="this.parentElement.remove()">✖</span>`;
+            document.getElementById('taskList').appendChild(li);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
